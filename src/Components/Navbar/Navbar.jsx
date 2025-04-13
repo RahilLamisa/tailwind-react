@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from './Link';
+import { AlignLeft, X } from 'lucide-react';
 
 const navigation = [
     { id: 1, name: "Home", path: "/" },
@@ -8,15 +9,29 @@ const navigation = [
     { id: 4, name: "Blog", path: "/blog" },
     { id: 5, name: "Contact", path: "/contact" },
   ];
+
+  const links = navigation.map(route => <Link key={route.id} route={route}></Link>)
   
 
 const Navbar = () => {
-    return (
-        <nav>
 
-            <ul className='flex justify-center'>
+    const [open, setOpen] = useState(false)
+
+    return (
+        <nav className='flex justify-between items-center mx-8'>
+            <span className='flex' onClick={() => setOpen(!open)}>
                 {
-                    navigation.map(route => <Link key={route.id} route={route}></Link>)
+                    open ? <X className='md:hidden'></X> : <AlignLeft className='md:hidden'></AlignLeft>
+                }
+                <ul className={`md:hidden absolute bg-amber-300 ${open ? 'top-8' : '-top-50'} duration-1000`}>
+                    { links }
+                </ul>
+            
+            <h3 className='ml-2'>My navbar</h3>
+            </span>
+            <ul className=' md:flex hidden'>
+                {
+                    links
                 }
             </ul>
 
@@ -32,6 +47,7 @@ const Navbar = () => {
                 <li className='mr-3'><a href="/about">about</a></li>
                 <li className='mr-3'><a href="/contact">contact</a></li>
             </ul> */}
+            <button className='btn'>Login</button>
         </nav>
     );
 };
