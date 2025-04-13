@@ -18,12 +18,12 @@ const Navbar = () => {
     const [open, setOpen] = useState(false)
 
     return (
-        <nav className='flex justify-between items-center mx-8'>
+        <nav className='flex justify-between items-center container mx-auto p-3 shadow shadow-violet-300 bg-violet-100'>
             <span className='flex' onClick={() => setOpen(!open)}>
                 {
                     open ? <X className='md:hidden'></X> : <AlignLeft className='md:hidden'></AlignLeft>
                 }
-                <ul className={`md:hidden absolute bg-amber-300 ${open ? 'top-8' : '-top-50'} duration-1000`}>
+                <ul className={`md:hidden absolute bg-violet-300 ${open ? 'top-8' : '-top-50'} duration-1000`}>
                     { links }
                 </ul>
             
@@ -47,7 +47,7 @@ const Navbar = () => {
                 <li className='mr-3'><a href="/about">about</a></li>
                 <li className='mr-3'><a href="/contact">contact</a></li>
             </ul> */}
-            <button className='btn'>Login</button>
+            <button>Login</button>
         </nav>
     );
 };
