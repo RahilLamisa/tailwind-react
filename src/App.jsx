@@ -4,8 +4,11 @@ import "./App.css";
 import Navbar from "./Components/Navbar/Navbar";
 import PricingOptions from "./Components/PricingOptions/PricingOptions";
 import ResultData from "./Components/ResultData/ResultData";
+import axios from "axios";
+import MarksChart from "./Components/MarksChart/MarksChart";
 
 const fetchPricingData = fetch("pricingData.json").then((res) => res.json());
+const fetchMarksData = axios.get('result.json')
 
 function App() {
   return (
@@ -22,6 +25,11 @@ function App() {
         </Suspense>
 
         <ResultData></ResultData>
+
+        <Suspense  fallback={<span className="loading loading-ring loading-lg"></span>}>
+          <MarksChart fetchMarksData={fetchMarksData}></MarksChart>
+        </Suspense>
+
       </main>
     </>
   );
